@@ -12,20 +12,22 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator initialRouteName='Login'
         screenOptions = {{
-          headerStyle : {backgroundColor : "#D9E5FF"},
-          geaderTitleStyle : {fontWeigh : "bold", color : "black"}
+          headerStyle : {backgroundColor : "white"},
+          headerTintColor: '#6699FF',
+          headerTitleStyle: {fontWeight: "bold"},
+          geaderTitleStyle : {fontWeigh : "bold", color : "white"}
         }}>
 
       <Stack.Screen
         name = "Login"
         component = {Login}
-        options = {{title : "Login Screen"}}
+        options = {{title : "UmStation" }}
       />
 
       <Stack.Screen
         name = "Home"
         component = {Home}
-        options = {{title : "Home Screen"}}
+        options = {{title : "UmStation"}}
       />
       </Stack.Navigator>
     </NavigationContainer>
