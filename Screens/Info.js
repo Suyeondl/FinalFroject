@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Text, View, TextInput, TouchableOpacity, ImageBackground } from "react-native";
 import { styles } from "../style";
 
-const SignUp = (props) => {
+const Info = (props) => {
   return(
     <ImageBackground>
     <View style = {styles.mainView}>
@@ -12,4 +12,4 @@ const SignUp = (props) => {
 
   )
 }
-export default SignUp;
+export default Info;
