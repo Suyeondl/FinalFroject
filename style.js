@@ -70,7 +70,6 @@ export const styles = StyleSheet.create({
 
   //홈 화면 버튼 (Station)
   homeBTN: {
-    /* Rectangle 2 */
   position: 'absolute',
   width: 380,
   height: 100,
