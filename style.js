@@ -16,22 +16,27 @@ export const styles = StyleSheet.create({
   //이미지
   image: {
     flex: 1,
-    width: 480,
-    height: 800
+    width: '100%',
+    height: '100%'
   },
+
+  signUpText: {
+    color: 'black'
+  },
+
 
   //관리자 정보 버튼
   infoBTN: {
     position: 'absolute',
-    width: 380,
+    width: '85%',
     height: 215,
-    left: 25,
-    right: 25,
-    top: 115,
+    top: -30,
 
     backgroundColor: '#D9E5FF',
 
-    borderRadius: 15
+    borderRadius: 15,
+    alignItems:'center',
+    justifyContent:'center'
   },
 
   //로그인 화면 버튼 (로그인, 회원가입)
@@ -71,57 +76,62 @@ export const styles = StyleSheet.create({
   //홈 화면 버튼 (Station)
   homeBTN: {
   position: 'absolute',
-  width: 380,
+  width: '85%',
   height: 100,
-  left: 25,
-  right: 25,
-  top: 349,
+  top: 200,
 
   backgroundColor: '#F2F2F2',
 
-  borderRadius: 15
+  borderRadius: 15,
+  alignItems:'center',
+  justifyContent:'center'
   },
 
   //홈 화면 버튼 (User)
   homeBTN2: {
     position: 'absolute',
-    width: 180,
+    width: '40%',
     height: 200,
     left: 25,
     right: 225,
-    top: 466,
+    top: 315,
   
     backgroundColor: '#F2F2F2',
   
-    borderRadius: 15
+    borderRadius: 15,
+    alignItems:'center',
+    justifyContent:'center'
   },
 
   //홈 화면 버튼 (폐우산)
   homeBTN3: {
     position: 'absolute',
-    width: 180,
+    width: '40%',
     height: 200,
-    left: 225,
-    right: 25,
-    top: 466,
+    right: 30,
+    top: 315,
 
     backgroundColor: '#F2F2F2',
 
-    borderRadius: 15
+    borderRadius: 15,
+    alignItems:'center',
+    justifyContent:'center'
   },
 
   //홈 화면 버튼 (고객센터)
   homeBTN4: {
     position: 'absolute',
-    width: 380,
+    width: '85%',
     height: 100,
     left: 25,
     right: 25,
-    top: 683,
+    top: 530,
 
     backgroundColor: '#F2F2F2',
 
-    borderRadius: 15
+    borderRadius: 15,
+    alignItems:'center',
+    justifyContent:'center'
   },
 
   //홈 화면 버튼 텍스트
