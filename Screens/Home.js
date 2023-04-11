@@ -2,9 +2,10 @@ import { useState } from "react";
 import { Text, View, TextInput, TouchableOpacity, ImageBackground } from "react-native";
 import { styles } from "../style";
 
+/* HomeScreen - 메인 기능 선택 화면 */
 const Home = (props) => {
   return(
-    <ImageBackground>
+    <ImageBackground style={styles.image} source={require('../images/MainScreen.png')} resizeMode="cover">
     <View style = {styles.mainView}>
 
     {/* Info 버튼 */}
