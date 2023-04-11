@@ -20,7 +20,7 @@ export default function App() {
         screenOptions = {{
           headerStyle : {backgroundColor : "white"},
           headerTintColor: '#6699FF',
-          headerTitleStyle: {fontWeight: "bold"},
+          headerTitleStyle: {fontWeight: "bold", fontSize:23},
         }}>
 
       <Stack.Screen
