@@ -3,6 +3,7 @@ import { Text, View, TextInput, TouchableOpacity, ImageBackground, Image } from 
 import { event } from "react-native-reanimated";
 import { styles } from "../style";
 
+/* LoginScreen - 관리자 로그인 화면 DB를 통해 회원 식별, 회원가입 선택 가능 */
 const Login = (props) => {
     const [idTextInput, setIdTextinput] = useState("") //입력받은 id
     const [pwTextInput, setPwTextinput] = useState("") //입력받은 password
