@@ -38,14 +38,14 @@ const Login = (props) => {
       onPress={() => {
         props.navigation.navigate("Home")
       }}>
-        <Text style = {styles.loginText}>Login</Text>
+        <Text style = {styles.Text}>Login</Text>
     </TouchableOpacity>
     <TouchableOpacity
       style = {styles.loginBTN}
       onPress={() => {
         props.navigation.navigate("SignUp")
       }}>
-        <Text style = {styles.loginText}>SignUp</Text>
+        <Text style = {styles.Text}>SignUp</Text>
     </TouchableOpacity>
 
     </View>
