@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
-  // 회색 F2F2F2
+  // 회색 F2F2F2 EDEDED
   // 로고색 D9E5FF
   
   //뷰 스타일
@@ -13,12 +13,26 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 
-  //이미지
+  homeView: {
+    flexDirection:'row'
+  },
+
+  //배경 이미지
   image: {
     flex: 1,
     width: '100%',
     height: '100%'
   },
+
+  //홈화면 이미지
+  homeImage: {
+    width: 70,
+    height: 70,
+    overflow: 'hidden',
+    left:100,
+    top : -30
+  },
+
 
   signUpText: {
     color: 'black'
@@ -34,9 +48,10 @@ export const styles = StyleSheet.create({
 
     backgroundColor: '#D9E5FF',
 
-    borderRadius: 15,
+    borderRadius: 7,
     alignItems:'center',
-    justifyContent:'center'
+    justifyContent:'center',
+    flexDirection: 'row'
   },
 
   //로그인 화면 버튼 (로그인, 회원가입)
@@ -51,7 +66,7 @@ export const styles = StyleSheet.create({
   },
 
   //로그인 화면 버튼 텍스트
-  loginText: {
+  Text: {
     fontSize: 15,
     color: 'black',
     textAlign: 'center',
@@ -80,9 +95,9 @@ export const styles = StyleSheet.create({
   height: 100,
   top: 200,
 
-  backgroundColor: '#F2F2F2',
+  backgroundColor: '#EDEDED',
 
-  borderRadius: 15,
+  borderRadius: 7,
   alignItems:'center',
   justifyContent:'center'
   },
@@ -96,9 +111,9 @@ export const styles = StyleSheet.create({
     right: 225,
     top: 315,
   
-    backgroundColor: '#F2F2F2',
+    backgroundColor: '#EDEDED',
   
-    borderRadius: 15,
+    borderRadius: 7,
     alignItems:'center',
     justifyContent:'center'
   },
@@ -111,9 +126,9 @@ export const styles = StyleSheet.create({
     right: 30,
     top: 315,
 
-    backgroundColor: '#F2F2F2',
+    backgroundColor: '#EDEDED',
 
-    borderRadius: 15,
+    borderRadius: 7,
     alignItems:'center',
     justifyContent:'center'
   },
@@ -127,21 +142,145 @@ export const styles = StyleSheet.create({
     right: 25,
     top: 530,
 
-    backgroundColor: '#F2F2F2',
+    backgroundColor: '#EDEDED',
 
-    borderRadius: 15,
+    borderRadius: 7,
     alignItems:'center',
     justifyContent:'center'
   },
 
-  //홈 화면 버튼 텍스트
-  homeText: {
-    fontSize: 50,
-    color: 'black',
-    fontStyle: 'bold',
-    alignContent: 'center',
-    justifyContent: 'center'
+  adminText: {
+    position: 'absolute',
+    fontSize:18,
+    width: 200,
+    height: 83,
+    left: -97,
+    right: 75,
+    top: -40,
   },
 
+  //홈 화면 버튼 텍스트
+  nameText: {
+    position: 'absolute',
+    fontSize:37,
+    fontWeight:'bold',
+    width: 200,
+    height: 83,
+    left: -100,
+    right: 75,
+    top: -10,
+    bottom: 800
+  },
+
+  idText: {
+    position: 'absolute',
+    fontSize:20,
+    fontWeight:'bold',
+    width: 200,
+    height: 83,
+    left: -100,
+    right: 75,
+    top: 70,
+    bottom: 800
+  },
+
+  serialText: {
+    position: 'absolute',
+    fontWeight:'bold',
+    width: 300,
+    fontSize:20,
+    height: 83,
+    left: -100,
+    right: 75,
+    top: 100,
+    bottom: 800
+  },
+
+  ServiceText: {
+    fontSize: 20,
+    color: 'black',
+    justifyContent:'flex-start',
+    alignItems:'flex-start'
+  },
+
+
+  StationBTN: {
+    backgroundColor: '#D9E5FF',
+    position: 'absolute',
+    width: '85%',
+    height: 100,
+    top: -30,
+
+    borderRadius: 7,
+    alignItems:'center',
+    justifyContent:'center',
+    flexDirection: 'row'
+  },
+
+  StationNameText: {
+    position: 'absolute',
+    fontSize:30,
+    fontWeight:'bold',
+    width: 200,
+    height: 83,
+    left: 15,
+    right: 120,
+    top: 15
+  },
+
+  StationaddressText: {
+    position: 'absolute',
+    fontSize:15,
+    top:65,
+    width: 300,
+    height: 83,
+    right: 120,
+    left: 15
+  },
+
+  StationBTN2: {
+    backgroundColor: '#D9E5FF',
+    position: 'absolute',
+    width: '85%',
+    height: 100,
+    top: 90,
+
+    borderRadius: 7,
+    alignItems:'center',
+    justifyContent:'center',
+    flexDirection: 'row'
+  },
+
+  StationNameText2: {
+    position: 'absolute',
+    fontSize:30,
+    fontWeight:'bold',
+    width: 200,
+    height: 83,
+    right: 120,
+    top: 15,
+    left: 15
+  },
+
+  StationaddressText2: {
+    position: 'absolute',
+    fontSize:15,
+    top:65,
+    width: 300,
+    height: 83,
+    right: 120,
+    left: 15
+  },
+  
+  UserText: {
+    position: 'absolute',
+    fontSize:30,
+    fontWeight:'bold',
+    width: 200,
+    height: 83,
+    right: 120,
+    top: 33,
+    left: 15
+  },
 
 })
