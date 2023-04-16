@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Text, View, TextInput, TouchableOpacity, ImageBackground } from "react-native";
+import { Image, Text, View, TextInput, TouchableOpacity, ImageBackground } from "react-native";
 import { styles } from "../style";
 
 /* HomeScreen - 메인 기능 선택 화면 */
@@ -14,8 +14,17 @@ const Home = (props) => {
       onPress={() => {
         props.navigation.navigate("Info")
       }}>
-        <Text style = {styles.homeText}>(관리자 정보)</Text>
+        <View style = {styles.homeView}>
+        <Image style={styles.homeImage} source={require('../images/UserIcon.png')} resizeMode="contain"></Image>
+        <Text style = {styles.adminText}>관리자</Text>
+        {/* 일단 하드코딩함 바꿔야됨 */}
+        <Text style = {styles.nameText}>김수연</Text>
+        <Text style = {styles.idText}>ID : suyeon2355</Text>
+        <Text style = {styles.serialText}>Serial Number : 84941256</Text>
+
+        </View>
     </TouchableOpacity>
+
 
     {/* Station, 고객센터 버튼 */}
     <TouchableOpacity 
@@ -23,14 +32,17 @@ const Home = (props) => {
       onPress={() => {
         props.navigation.navigate("Station")
       }}>
-        <Text style = {styles.homeText}>Station</Text>
+      <ImageBackground style={styles.image} source={require('../images/Station.png')} resizeMode="contain">
+      </ImageBackground>
     </TouchableOpacity>
+
     <TouchableOpacity
       style = {styles.homeBTN4}
       onPress={() => {
         props.navigation.navigate("Service")
       }}>
-        <Text style = {styles.homeText}>고객센터</Text>
+      <ImageBackground style={styles.image} source={require('../images/Service.png')} resizeMode="contain">
+      </ImageBackground>
     </TouchableOpacity>
 
     {/* User, 폐우산 버튼 */}
@@ -39,14 +51,16 @@ const Home = (props) => {
       onPress={() => {
         props.navigation.navigate("User")
       }}>
-        <Text style = {styles.homeText}>User</Text>
+      <ImageBackground style={styles.image} source={require('../images/User.png')} resizeMode="contain">
+      </ImageBackground>
     </TouchableOpacity>
     <TouchableOpacity
       style = {styles.homeBTN3}
       onPress={() => {
         props.navigation.navigate("Umbrella")
       }}>
-        <Text style = {styles.homeText}>폐우산</Text>
+      <ImageBackground style={styles.image} source={require('../images/Um.png')} resizeMode="contain">
+      </ImageBackground>
     </TouchableOpacity>
 
     </View>
