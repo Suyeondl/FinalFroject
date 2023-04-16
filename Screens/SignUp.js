@@ -57,7 +57,7 @@ const SignUp = (props) => {
 
     {/* signup 시 회원가입 정보 전달 */}
     <TouchableOpacity style={styles.loginBTN} onPress={addManager}>
-      <Text style={styles.loginText}>Sign Up</Text>
+      <Text style={styles.Text}>Sign Up</Text>
     </TouchableOpacity>
 
     <TouchableOpacity style={styles.loginBTN}
@@ -65,7 +65,7 @@ const SignUp = (props) => {
       props.navigation.navigate("Login")
       }}
     >
-    <Text style={styles.loginText}>Login</Text>
+    <Text style={styles.Text}>Login</Text>
       </TouchableOpacity>
 
     </View>
