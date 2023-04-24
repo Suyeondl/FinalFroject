@@ -7,7 +7,7 @@ import HorizonLine from "../../utils/HorizontalLine";
 /* 고객센터 */
 const Service = (props) => {
   return(
-    <ImageBackground>
+    <ImageBackground style={styles.image} source={require('../../images/MainScreen.png')} resizeMode="cover">
     <View style = {styles.mainView}>
 
     <TouchableOpacity

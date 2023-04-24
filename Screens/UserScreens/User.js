@@ -6,7 +6,7 @@ import { styles } from "../../style";
 /* 사용자 관리 - 사용자 성명, 가입 일시, 대여 기록, 폐우산 기부 기록 열람 및 정보 삭제 가능 */
 const User = (props) => {
   return(
-    <ImageBackground>
+    <ImageBackground style={styles.image} source={require('../../images/MainScreen.png')} resizeMode="cover">
     <View style = {styles.mainView}>
 
     <TouchableOpacity

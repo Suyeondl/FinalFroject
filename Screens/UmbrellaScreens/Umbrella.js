@@ -5,7 +5,7 @@ import { styles } from "../../style";
 /* Station 별 폐우산 적재 갯수 - 날짜 및 반납한 사용자, 반납 우산 사진 확인 가능 */
 const Umbrella = (props) => {
   return(
-    <ImageBackground>
+    <ImageBackground style={styles.image} source={require('../../images/MainScreen.png')} resizeMode="cover">
     <View style = {styles.mainView}>
 
     {/* 정보 수정 필요 */}
