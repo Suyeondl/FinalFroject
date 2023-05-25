@@ -1,14 +1,18 @@
 import { useState } from "react";
 import { Image, Text, View, TextInput, TouchableOpacity, ImageBackground } from "react-native";
+import { db } from '../firebaseConfig';
+import { collection, getDocs, where, query } from 'firebase/firestore';
 import { styles } from "../style";
 
 /* HomeScreen - 메인 기능 선택 화면 */
 const Home = (props) => {
+  const [admin, setAdmin] = useState("") //불러온 관리자 정보
+
   return(
     <ImageBackground style={styles.image} source={require('../images/MainScreen.png')} resizeMode="cover">
     <View style = {styles.mainView}>
 
-    {/* Info 버튼 */}
+    {/* 관리자 정보 버튼 */}
     <TouchableOpacity 
       style = {styles.infoBTN}
       onPress={() => {
@@ -16,17 +20,19 @@ const Home = (props) => {
       }}>
         <View style = {styles.homeView}>
         <Image style={styles.homeImage} source={require('../images/UserIcon.png')} resizeMode="contain"></Image>
+
         <Text style = {styles.adminText}>관리자</Text>
-        {/* 일단 하드코딩함 바꿔야됨 */}
-        <Text style = {styles.nameText}>김수연</Text>
-        <Text style = {styles.idText}>ID : suyeon2355</Text>
-        <Text style = {styles.serialText}>Serial Number : 84941256</Text>
+
+        {/* 관리자 정보 출력 (이름, 아이디, 이메일) */}
+        <Text style = {styles.nameText}>{admin[0].a_name}</Text>
+        <Text style = {styles.idText}>{admin[0].a_id}</Text>
+        <Text style = {styles.serialText}>{admin[0].a_email}</Text>
 
         </View>
     </TouchableOpacity>
 
 
-    {/* Station, 고객센터 버튼 */}
+    {/* Station 버튼  */}
     <TouchableOpacity 
       style = {styles.homeBTN}
       onPress={() => {
@@ -36,6 +42,7 @@ const Home = (props) => {
       </ImageBackground>
     </TouchableOpacity>
 
+    {/* Service 버튼 */}
     <TouchableOpacity
       style = {styles.homeBTN4}
       onPress={() => {
@@ -45,7 +52,7 @@ const Home = (props) => {
       </ImageBackground>
     </TouchableOpacity>
 
-    {/* User, 폐우산 버튼 */}
+    {/* User 버튼 */}
     <TouchableOpacity 
       style = {styles.homeBTN2}
       onPress={() => {
@@ -54,6 +61,8 @@ const Home = (props) => {
       <ImageBackground style={styles.image} source={require('../images/User.png')} resizeMode="contain">
       </ImageBackground>
     </TouchableOpacity>
+
+    {/* 폐우산 버튼 */}
     <TouchableOpacity
       style = {styles.homeBTN3}
       onPress={() => {

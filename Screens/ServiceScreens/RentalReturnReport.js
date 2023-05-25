@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, Dimensions, ScrollView, TextInput, TouchableOpacity, Keyboard } from 'react-native';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { RadioButton } from 'react-radio-buttons';
+import { db } from '../../firebaseConfig';
+import { collection, getDocs, where, query } from 'firebase/firestore';
 import GraySmallButton from './GraySmallButton';
 
 const RentalReturnReport = () => {

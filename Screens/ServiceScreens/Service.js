@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Text, View, TextInput, TouchableOpacity, ImageBackground } from "react-native";
 import { styles } from "../../style";
-import { firebase_db } from "../../firebaseConfig";
+import { db } from '../../firebaseConfig';
+import { collection, getDocs, where, query } from 'firebase/firestore';
 import HorizonLine from "../../utils/HorizontalLine";
 
 /* 고객센터 */

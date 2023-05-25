@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { db } from '../firebaseConfig';
+import { addDoc, collection } from 'firebase/firestore';
 import { Text, View, TextInput, TouchableOpacity, ImageBackground } from "react-native";
 import { styles } from "../style";
 
@@ -25,8 +27,17 @@ const SignUp = (props) => {
   //관리자 정보 추가하기(회원가입)
   const addManager = async() => {
     try{
-
-    }catch(error){console.log(error.message)}
+      await addDoc(collection(db, "Admin"), {
+          name: nameTextInput,
+          st_id: idTextInput,
+          st_pw: pwTextInput,
+      });
+      //값 초기화
+      alert("Add Admin")
+      setNameTextInput("")
+      setIdTextInput("")
+      setPwTextInput("")
+    }catch(error){ console.log(error.message) }
   }
 
   return(
@@ -36,21 +47,21 @@ const SignUp = (props) => {
     <Text style = {styles.signUpText}>Name</Text>
     <TextInput
       value = {nameTextInput}
-      onChangeText = {nameTextInput}
+      onChangeText = {nameChangeInput}
       placeholder= "User Name"
       style = {styles.loginputText}
     />
     <Text style = {styles.signUpText}>ID</Text>
     <TextInput
       value = {idTextInput}
-      onChangeText = {idTextInput}
+      onChangeText = {idChangeInput}
       placeholder= "User ID"
       style = {styles.loginputText}
     />
     <Text style = {styles.signUpText}>PassWord</Text>
     <TextInput
       value = {pwTextInput}
-      onChangeText = {pwTextInput}
+      onChangeText = {pwChangeInput}
       placeholder= "Password"
       style = {styles.loginputText}
     />
