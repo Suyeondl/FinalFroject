@@ -35,7 +35,7 @@ const Login = (props) => {
                       alert("success login")
                       //로그인 성공 - Home으로 이동
                       props.navigation.navigate("Home", {
-                          admin: idTextInput
+                          adminId: idTextInput
                       }) 
                   //PW 불일치
                   }else alert("Password Mismatch")
@@ -44,7 +44,7 @@ const Login = (props) => {
       }catch(error){ console.log(error.message)}
   }
 
-  return(
+  return (
     <ImageBackground style={styles.image} source={require('../images/LoginScreen.png')} resizeMode='cover'>
     <View style = {styles.mainView}>
     
