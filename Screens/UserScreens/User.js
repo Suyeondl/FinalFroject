@@ -1,62 +1,47 @@
-import { useState } from "react";
-import { Text, View, TextInput, TouchableOpacity, ImageBackground } from "react-native";
+import React, { useEffect, useState } from 'react';
+import { ScrollView, View, Text, TouchableOpacity } from 'react-native';
+import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../../firebaseConfig';
-import { collection, getDocs, where, query } from 'firebase/firestore';
-import { styles } from "../../style";
+import { styles } from '../../style';
 
-
-/* 사용자 관리 - 사용자 성명, 가입 일시, 대여 기록, 폐우산 기부 기록 열람 및 정보 삭제 가능 */
 const User = (props) => {
-  const [user, setUser] = useState("") //불러온 사용자 정보
+  const [users, setUsers] = useState([]);
 
-      const loginDB = async ()=>{
-        try{
-            //q:쿼리문,  Readstudent:쿼리문으로 식별한 DB   
-            const q = await query( collection(db, "User"), where('u_id',"==", idTextInput))
-            const Readstudent = await getDocs(q); 
-            //ID존재 
-            if(Readstudent != null){  
-                Readstudent.docs.map((row, idx) =>{ 
-                    //PW 일치
-                    if(row.data().st_pw == pwTextInput){
-                        setStudent(row.data()) //최종 student DB 저장
-                        alert("success login")
-                        //로그인 성공 - Home으로 이동
-                        props.navigation.navigate("Home", {
-                            student: idTextInput
-                        }) 
-                    //PW 불일치
-                    }else alert("Password Mismatch")
-                })
-            }
-        }catch(error){ console.log(error.message)}
-    }
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, 'User'));
+        const userData = querySnapshot.docs.map((doc) => doc.data());
+        setUsers(userData);
+      } catch (error) {
+        console.log('데이터 가져오기 실패:', error);
+      }
+    };
 
-  return(
-    <ImageBackground style={styles.image} source={require('../../images/MainScreen.png')} resizeMode="cover">
-    <View style = {styles.mainView}>
+    fetchUsers();
+  }, []);
 
-    <TouchableOpacity
-      style = {styles.StationBTN}
-      onPress={() => {
-        props.navigation.navigate("UserInfo")
-      }}>
-      {/* <Image style={styles.homeImage} source={require('../../images/User.png')} resizeMode="contain"></Image> */}
-      <Text style = {styles.UserText}>{user[0].u_name}</Text>
-    </TouchableOpacity>
+  const handleUserPress = (user) => {
+    props.navigation.navigate('UserInfo', { user });
+  };
 
-    <TouchableOpacity
-      style = {styles.StationBTN2}
-      onPress={() => {
-        props.navigation.navigate("UserInfo")
-      }}>
-      <Text style = {styles.UserText}>{user[1].u_name}</Text>
-    </TouchableOpacity>
-
-
+  return (
+    <View style={styles.container}>
+      <ScrollView>
+        {users.map((user) => (
+          <TouchableOpacity
+            key={user.u_id}
+            // style={styles.userCard}
+            onPress={() => handleUserPress(user)}
+          >
+            <Text>{user.u_date}</Text>
+            <Text>{user.u_email}</Text>
+            <Text>{user.u_id}</Text>
+          </TouchableOpacity>
+        ))}
+      </ScrollView>
     </View>
-    </ImageBackground>
+  );
+};
 
-  )
-}
 export default User;
