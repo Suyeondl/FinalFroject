@@ -1,36 +1,53 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Image, Text, View, TextInput, TouchableOpacity, ImageBackground } from "react-native";
 import { db } from '../firebaseConfig';
-import { collection, getDocs, where, query } from 'firebase/firestore';
+import { collection, query, where, getDocs } from 'firebase/firestore';
 import { styles } from "../style";
 
-/* HomeScreen - 메인 기능 선택 화면 */
 const Home = (props) => {
-  const [admin, setAdmin] = useState("") //불러온 관리자 정보
+  const [adminId, setAdminId] = useState("");
+  const [adminData, setAdminData] = useState(); // 불러온 관리자 정보
 
+  useEffect(() => {
+    const fetchData = async () => {
+      const adminId = props.route.params.adminId;
+      try {
+        const q = query(collection(db, 'Admin'), where('a_id', '==', adminId));
+        const querySnapshot = await getDocs(q);
+        querySnapshot.forEach((doc) => {
+          const admin = doc.data();
+          setAdminData(admin);
+          console.log('data', admin);
+        });
+      } catch (error) {
+        console.log('데이터 가져오기 실패:', error);
+      }
+    };
+    fetchData();
+  }, [adminId]);
+  
   return(
     <ImageBackground style={styles.image} source={require('../images/MainScreen.png')} resizeMode="cover">
     <View style = {styles.mainView}>
+    <TouchableOpacity
+        style={styles.infoBTN}
+        onPress={() => {
+          navigation.navigate('Info');
+        }}
+      >
+        <View style={styles.homeView}>
+          <Image style={styles.homeImage} source={require('../images/UserIcon.png')} resizeMode="contain" />
+          <Text style={styles.adminText}>관리자</Text>
 
-    {/* 관리자 정보 버튼 */}
-    <TouchableOpacity 
-      style = {styles.infoBTN}
-      onPress={() => {
-        props.navigation.navigate("Info")
-      }}>
-        <View style = {styles.homeView}>
-        <Image style={styles.homeImage} source={require('../images/UserIcon.png')} resizeMode="contain"></Image>
-
-        <Text style = {styles.adminText}>관리자</Text>
-
-        {/* 관리자 정보 출력 (이름, 아이디, 이메일) */}
-        <Text style = {styles.nameText}>{admin[0].a_name}</Text>
-        <Text style = {styles.idText}>{admin[0].a_id}</Text>
-        <Text style = {styles.serialText}>{admin[0].a_email}</Text>
-
+          {adminData && (
+            <View>
+              <Text style={styles.nameText}>{adminData.a_name}</Text>
+              <Text style={styles.idText}>{adminData.a_id}</Text>
+              <Text style={styles.serialText}>{adminData.a_email}</Text>
+            </View>
+          )}
         </View>
-    </TouchableOpacity>
-
+      </TouchableOpacity>
 
     {/* Station 버튼  */}
     <TouchableOpacity 
