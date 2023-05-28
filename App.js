@@ -5,8 +5,11 @@ import Home from './Screens/Home';
 import SignUp from './Screens/SignUp';
 import Service from './Screens/ServiceScreens/Service';
 import Station from './Screens/StationScreens/Station';
+import StationInfo from './Screens/StationScreens/StationInfo';
+import Map from './Screens/StationScreens/Map';
 import Umbrella from './Screens/UmbrellaScreens/Umbrella';
 import User from './Screens/UserScreens/User';
+import UserInfo from './Screens/UserScreens/UserInfo';
 import Info from './Screens/InfoScreens/Info';
 import RentalReturnReport from './Screens/ServiceScreens/RentalReturnReport';
 import GraySmallButton from './Screens/ServiceScreens/GraySmallButton';
@@ -32,10 +35,10 @@ export default function App() {
         options = {{title : "UmStation" }}
       />
 
-      <Stack.Screen
+        <Stack.Screen
         name = "Home"
         component = {Home}
-        options = {{title : "UmStation"}}
+        options = {{title : "UmStation" }}
       />
 
       <Stack.Screen
@@ -57,14 +60,32 @@ export default function App() {
       />
 
       <Stack.Screen
+        name = "StationInfo"
+        component = {StationInfo}
+        options = {{title : "Station 정보"}}
+      />
+
+      <Stack.Screen
+        name = "Map"
+        component = {Map}
+        options = {{title : "Station 정보"}}
+      />
+
+      <Stack.Screen
         name = "Umbrella"
         component = {Umbrella}
         options = {{title : "폐우산 관리"}}
       />
 
       <Stack.Screen
-        name = "User"
-        component = {User}
+        name="User"
+        component={({ navigation }) => <User navigation={navigation} />}
+        options={{ title: '사용자 관리' }}
+      />
+
+      <Stack.Screen
+        name = "UserInfo"
+        component = {UserInfo}
         options = {{title : "사용자 관리"}}
       />
 
