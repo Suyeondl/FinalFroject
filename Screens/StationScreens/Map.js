@@ -3,17 +3,13 @@ import { Text, View, StyleSheet, Dimensions, Button, Alert, Modal, Pressable, Im
 import MapView, { Marker, Circle, Callout } from 'react-native-maps';
 // npm i react-native-maps
 import * as Location from 'expo-location';
-
-
 //fire store
 //npx expo install firebase
 import { db } from '../../firebaseConfig';
 import { collection, getDocs } from 'firebase/firestore';
 
-
-
-const Map = ({navigation}) => {
-  const [mapRegion, setmapRegion] = useState({ //나의 위치 usestate
+const Map = ({ navigation }) => {
+  const [mapRegion, setmapRegion] = useState({ //나의 위치
     latitude: 36.7987869, //위도
     longitude: 127.0757584, //경도
   });
@@ -29,8 +25,6 @@ const Map = ({navigation}) => {
       setRegion(region)
   };
 
-
-
   useEffect(() => {
     (async () => {
       try {
@@ -38,7 +32,7 @@ const Map = ({navigation}) => {
         setStations(data.docs.map(doc => ({ ...doc.data(), id: doc.id }))) // map을 돌려서 데이터를 복사하여 붙여놓고, id를 추가해줌
         
       } catch (error) {
-        console.log('error', error.message)
+        console.log('eerror', error.message)
       }
     })();
   }, []);
@@ -65,14 +59,7 @@ const Map = ({navigation}) => {
     })();
   }, []);
 
-
-
-
-
-
-
-
-  //이동하기
+  // 이동하기
   const onDetail = (lat, lon) => { // 반납 가능 우산 개수, 대여 가능 우산 개수 계산
     setmapRegion({ //현재 위치
       latitude: lat,
@@ -162,10 +149,8 @@ const Map = ({navigation}) => {
           }        
         </MapView>
 
-
         <View>
           
-
         </View>
 
       </View>
@@ -173,8 +158,6 @@ const Map = ({navigation}) => {
 
   );
 }
-
-export default Map;
 
 const styles = StyleSheet.create({
   container: {
@@ -263,3 +246,82 @@ const styles = StyleSheet.create({
     height:50,
   }
 });
+
+export default Map;
+
+// import React, { useEffect, useState } from 'react';
+// import { View } from 'react-native';
+// import MapView from 'react-native-maps';
+// import * as Location from 'expo-location';
+// import { collection, getDocs } from 'firebase/firestore';
+// import { db } from '../../firebaseConfig';
+// import { useRoute } from '@react-navigation/native';
+
+// const Map = () => {
+//   const [userLocation, setUserLocation] = useState(null);
+//   const [stations, setStations] = useState([]);
+//   const route = useRoute();
+//   const { st_address } = route.params;
+
+//   useEffect(() => {
+//     const requestLocationPermission = async () => {
+//       let { status } = await Location.requestForegroundPermissionsAsync();
+//       if (status !== 'granted') {
+//         console.log('Permission to access location was denied');
+//         return;
+//       }
+
+//       let location = await Location.getCurrentPositionAsync({});
+//       setUserLocation(location.coords);
+//     };
+
+//     (async () => {
+//       try {
+//         const data = await getDocs(collection(db, 'Station'));
+//         setStations(data.docs.map(doc => ({ ...doc.data(), id: doc.id })));
+//       } catch (error) {
+//         console.log('Error fetching stations:', error);
+//       }
+//     })();
+
+//     requestLocationPermission();
+//   }, []);
+
+//   const stationLocation = stations.find(station => station.st_address === st_address);
+
+//   return (
+//     <View style={{ flex: 1 }}>
+//       {userLocation && (
+//         <MapView
+//           style={{ flex: 1 }}
+//           initialRegion={{
+//             latitude: userLocation.latitude,
+//             longitude: userLocation.longitude,
+//             latitudeDelta: 0.05,
+//             longitudeDelta: 0.05,
+//           }}
+//         >
+//           <MapView.Marker
+//             coordinate={{
+//               latitude: userLocation.latitude,
+//               longitude: userLocation.longitude,
+//             }}
+//             title="현재 위치"
+//           />
+
+//           {stationLocation && (
+//             <MapView.Marker
+//               coordinate={{
+//                 latitude: stationLocation.latitude,
+//                 longitude: stationLocation.longitude,
+//               }}
+//               title={st_address}
+//             />
+//           )}
+//         </MapView>
+//       )}
+//     </View>
+//   );
+// };
+
+// export default Map;
