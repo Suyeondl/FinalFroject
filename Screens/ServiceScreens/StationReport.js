@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { ScrollView, View, Text, TextInput, TouchableOpacity, StyleSheet, ImageBackground } from 'react-native';
+import { ScrollView, View, Text, TextInput, TouchableOpacity, StyleSheet, Image, ImageBackground } from 'react-native';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import { db } from '../../firebaseConfig';
 import { useNavigation } from '@react-navigation/native';
 
-const RentalReturnReport = () => {
+const StationReport = () => {
   const [stationNotifications, setStationNotifications] = useState([]);
   const [searchText, setSearchText] = useState('');
   const [reload, setReload] = useState(false); // 상태 변수 추가
@@ -15,7 +15,7 @@ const RentalReturnReport = () => {
       try {
         let q = query(collection(db, 'StationNotification'), 
           where('a_state', '==', false),
-          where('no_category', '==', 'RR')
+          where('no_category', '==', 'BR')
         );
 
         if (searchText !== '') {
@@ -38,7 +38,7 @@ const RentalReturnReport = () => {
   };
 
   const handleItemPress = (u_id, no_additional) => {
-    navigation.navigate('RRAnswer', { u_id, no_additional });
+    navigation.navigate('BRAnswer', { u_id, no_additional });
   };
 
   const handleReload = () => {
@@ -69,6 +69,7 @@ const RentalReturnReport = () => {
 
       <TouchableOpacity style={styles.reloadButton} onPress={handleReload}>
         <ImageBackground source={require('../Reload.png')} style={{width:40, height:40}}></ImageBackground>
+        {/* <Text style={styles.reloadButtonText}>새로고침</Text> */}
       </TouchableOpacity>
 
     </View>
@@ -118,10 +119,6 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-end',
     marginTop: 10,
   },
-  reloadButtonText: {
-    fontSize: 16,
-    color: 'blue',
-  },
 });
 
-export default RentalReturnReport;
+export default StationReport;

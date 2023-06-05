@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { ScrollView, View, Text, TextInput, TouchableOpacity, StyleSheet, ImageBackground } from 'react-native';
+import { ScrollView, View, Text, TextInput, TouchableOpacity, StyleSheet, Image, ImageBackground } from 'react-native';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import { db } from '../../firebaseConfig';
 import { useNavigation } from '@react-navigation/native';
 
-const RentalReturnReport = () => {
+const AnswerList = () => {
   const [stationNotifications, setStationNotifications] = useState([]);
   const [searchText, setSearchText] = useState('');
   const [reload, setReload] = useState(false); // 상태 변수 추가
@@ -14,8 +14,7 @@ const RentalReturnReport = () => {
     const fetchStationNotifications = async () => {
       try {
         let q = query(collection(db, 'StationNotification'), 
-          where('a_state', '==', false),
-          where('no_category', '==', 'RR')
+          where('a_state', '==', true),
         );
 
         if (searchText !== '') {
@@ -37,8 +36,8 @@ const RentalReturnReport = () => {
     setSearchText(text);
   };
 
-  const handleItemPress = (u_id, no_additional) => {
-    navigation.navigate('RRAnswer', { u_id, no_additional });
+  const handleItemPress = (u_id, no_additional, answer) => {
+    navigation.navigate('HistoryAnswer', { u_id, no_additional, answer });
   };
 
   const handleReload = () => {
@@ -59,7 +58,7 @@ const RentalReturnReport = () => {
           <TouchableOpacity
             key={index}
             style={styles.notificationItem}
-            onPress={() => handleItemPress(notification.u_id, notification.no_additional)}
+            onPress={() => handleItemPress(notification.u_id, notification.no_additional, notification.answer)}
           >
             <Text style={styles.notificationText}>{notification.u_id} 님의 문의</Text>
           </TouchableOpacity>
@@ -69,6 +68,7 @@ const RentalReturnReport = () => {
 
       <TouchableOpacity style={styles.reloadButton} onPress={handleReload}>
         <ImageBackground source={require('../Reload.png')} style={{width:40, height:40}}></ImageBackground>
+        {/* <Text style={styles.reloadButtonText}>새로고침</Text> */}
       </TouchableOpacity>
 
     </View>
@@ -118,10 +118,6 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-end',
     marginTop: 10,
   },
-  reloadButtonText: {
-    fontSize: 16,
-    color: 'blue',
-  },
 });
 
-export default RentalReturnReport;
+export default AnswerList;
