@@ -3,6 +3,7 @@ import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
   // 회색 F2F2F2 EDEDED
   // 로고색 D9E5FF
+  // 6699FF
   
   //뷰 스타일
   mainView: {
@@ -26,18 +27,17 @@ export const styles = StyleSheet.create({
 
   //홈화면 이미지
   homeImage: {
-    width: 70,
-    height: 70,
+    width: 80,
+    height: 80,
     overflow: 'hidden',
-    left:100,
-    top : -30
+    left:90,
+    top : -30,
+    borderRadius: 50
   },
-
 
   signUpText: {
     color: 'black'
   },
-
 
   //관리자 정보 버튼
   infoBTN: {
@@ -283,4 +283,96 @@ export const styles = StyleSheet.create({
     left: 15
   },
 
+  // Info 스크린 정보, 값 css
+  label: {
+    fontSize: 25,
+    fontWeight: 'bold',
+    marginTop: 10,
+    color: 'black',
+  },
+  value: {
+    fontSize: 20,
+    marginTop: 5,
+    backgroundColor: '#D9E5FF',
+    padding: 10,
+    marginBottom:10
+  },
+
+
+  // StationInfo, UserInfo, Info 스크린 정보
+  container: {
+    flex: 1,
+    backgroundColor: '#FFFFFF',
+    padding: 20,
+  },
+  infoContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent:'center'
+    // marginBottom: 10,
+  },
+  idContainer: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    justifyContent: 'space-between',
+  },
+  stationId: {
+    fontSize: 30,
+
+    fontWeight: 'bold',
+    marginBottom: 10,
+  },
+  address: {
+    fontSize: 16,
+    marginBottom: 10,
+  },
+  stateButton: {
+    width:'100%',
+    height:'5%',
+    backgroundColor: '#CCCCCC',
+    borderRadius: 5,
+    paddingVertical: 5,
+    paddingHorizontal: 10,
+    marginBottom: 10,
+    justifyContent: 'center',
+    alignItems:'center'
+  },
+  stateButtonText: {
+    color: '#FFFFFF',
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+  button: {
+    backgroundColor: '#6699FF',
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    borderRadius: 5,
+    marginTop: 20,
+    width: '100%',
+    alignItems: 'center'
+  },
+  buttonText: {
+    color: '#FFFFFF',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  label: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginTop: 10,
+    marginBottom: 10,
+    color: 'black',
+  },
+  value: {
+    fontSize: 20,
+    marginTop: 5,
+    backgroundColor: '#D9E5FF',
+    padding: 10,
+    width: '100%'
+  },
+  status: {
+    fontSize: 20,
+    margin: 5,
+    fontWeight: 'bold'
+  }
 })
