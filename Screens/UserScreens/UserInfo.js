@@ -24,7 +24,6 @@ const UserInfo = ({ route }) => {
 
   };
 
-
   return (
     <View style={styles.container}>
       <Text style={styles.label}>  사용자 정보</Text>

@@ -30,10 +30,10 @@ const BRAnswer = ({ route, navigation }) => {
           }));
           setAnswerData(answerData);
         } else {
-          console.log('No matching documents found.');
+          console.log('일치하는 문서가 없습니다.');
         }
       } catch (error) {
-        console.log('Failed to fetch answer data:', error);
+        console.log('답변 DB를 가져오지 못했습니다.', error);
       }
     };
 
@@ -52,10 +52,10 @@ const BRAnswer = ({ route, navigation }) => {
         console.log('Answer saved successfully.');
         navigation.goBack(); // 이전 페이지로 이동
       } else {
-        console.log('No matching documents found to update.');
+        console.log('일치하는 문서가 없습니다.', error);
       }
     } catch (error) {
-      console.log('Failed to save answer:', error);
+      console.log('answer 값 저장에 실패했습니다.', error);
     }
   };
 

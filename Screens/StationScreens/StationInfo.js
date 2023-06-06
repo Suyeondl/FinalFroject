@@ -36,7 +36,7 @@ const StationInfo = ({ route }) => {
       }));
       console.log('상태값이 변경되었습니다.');
     } catch (error) {
-      console.log('상태값 변경 실패:', error);
+      console.log('상태값 변경에 실패했습니다.', error);
     }
   };
 
@@ -61,7 +61,7 @@ const StationInfo = ({ route }) => {
       console.log('폐우산 적재 갯수가 초기화되었습니다.');
       setReload(!reload); // 적재 갯수를 초기화했으므로 데이터를 다시 불러오기 위해 상태 변수 변경
     } catch (error) {
-      console.log('폐우산 적재 갯수 초기화 실패:', error);
+      console.log('폐우산 적재 갯수 초기화에 실패했습니다.', error);
     }
   };
 

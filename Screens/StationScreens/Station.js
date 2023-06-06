@@ -18,7 +18,7 @@ const Station = (props) => {
         const stationData = querySnapshot.docs.map((doc) => doc.data());
         setStations(stationData);
       } catch (error) {
-        console.log('데이터 가져오기 실패:', error);
+        console.log('데이터를 가져오지 못했습니다.', error);
       }
     };
 

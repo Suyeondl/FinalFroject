@@ -28,7 +28,7 @@ const AnswerList = () => {
         const stationNotificationData = querySnapshot.docs.map((doc) => doc.data());
         setStationNotifications(stationNotificationData);
       } catch (error) {
-        console.log('Failed to fetch station notifications:', error);
+        console.log('StationNotification DB를 가져오지 못했습니다.', error);
       }
     };
 

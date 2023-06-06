@@ -29,7 +29,7 @@ const StationReport = () => {
         const stationNotificationData = querySnapshot.docs.map((doc) => doc.data());
         setStationNotifications(stationNotificationData);
       } catch (error) {
-        console.log('StationNotification 문서를 찾을 수 없습니다.', error);
+        console.log('StationNotification DB를 가져오지 못했습니다.', error);
       }
     };
 
