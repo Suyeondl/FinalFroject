@@ -11,6 +11,7 @@ const Station = (props) => {
   const [searchText, setSearchText] = useState('');
   const [reload, setReload] = useState(false); // 상태 변수 추가
 
+  // 스테이션 DB 값 로드
   useEffect(() => {
     const fetchStations = async () => {
       try {
@@ -25,6 +26,7 @@ const Station = (props) => {
     fetchStations();
   }, [reload]);
 
+  // station 값 가지고 다음 페이지로 전달
   const handleStationPress = (station) => {
     props.navigation.navigate('StationInfo', { station });
   };
@@ -33,10 +35,12 @@ const Station = (props) => {
     setSearchText(text);
   };
 
+  // station_id로 검색
   const filteredStations = stations.filter((station) =>
     station.st_id.toLowerCase().includes(searchText.toLowerCase())
   );
 
+  // 새로고침
   const handleReload = () => {
     setReload(!reload);
   };

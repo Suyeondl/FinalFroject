@@ -10,6 +10,7 @@ const UserInfo = ({ route }) => {
   const { user } = route.params;
   const [rentalStatus, setRentalStatus] = useState(user.u_rent);
 
+  // 사용자의 대여 상태 변경
   const handleStateChange = async (rentalStatus) => {
     console.log(rentalStatus)
     try {

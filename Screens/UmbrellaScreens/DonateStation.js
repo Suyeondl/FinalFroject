@@ -3,10 +3,14 @@ import { ScrollView, View, Text, TouchableOpacity, TextInput, StyleSheet } from 
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../../firebaseConfig';
 
+/* 폐우산 기부 받은 Station 리스트 스크린
+// Station ID, 현재 폐우산 적재 갯수 출력 */
+
 const DonateStation = (props) => {
   const [stations, setStations] = useState([]);
   const [searchText, setSearchText] = useState('');
 
+  // Station DB 값 로드
   useEffect(() => {
     const fetchStations = async () => {
       try {
@@ -21,6 +25,7 @@ const DonateStation = (props) => {
     fetchStations();
   }, []);
 
+  // 선택한 station의 정보 가지고 다음 페이지로 전달
   const handleStationPress = (station) => {
     props.navigation.navigate('Umbrella', { station });
   };
@@ -29,6 +34,7 @@ const DonateStation = (props) => {
     setSearchText(text);
   };
 
+  // station id로 검색
   const filteredStations = stations.filter((station) =>
     station.st_id.toLowerCase().includes(searchText.toLowerCase())
   );

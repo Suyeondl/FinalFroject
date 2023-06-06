@@ -13,6 +13,7 @@ const StationReport = () => {
   const [reload, setReload] = useState(false); // 상태 변수 추가
   const navigation = useNavigation();
 
+  // 선택한 문의 정보와 일치하는 DB 로드 -> 답변 전 / 스테이션 고장 문의
   useEffect(() => {
     const fetchStationNotifications = async () => {
       try {
@@ -21,6 +22,7 @@ const StationReport = () => {
           where('no_category', '==', 'BR')
         );
 
+        // 사용자 ID로 검색
         if (searchText !== '') {
           q = query(q, where('u_id', '==', searchText));
         }
@@ -40,10 +42,12 @@ const StationReport = () => {
     setSearchText(text);
   };
 
+  // u_id와 no_additional이 일치하는 문의 다음 페이지로 전달
   const handleItemPress = (u_id, no_additional) => {
     navigation.navigate('BRAnswer', { u_id, no_additional });
   };
 
+  // 새로고침
   const handleReload = () => {
     setReload(!reload);
   };

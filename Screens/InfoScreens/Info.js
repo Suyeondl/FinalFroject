@@ -15,6 +15,7 @@ const Info = ({ route }) => {
   const [editedEmail, setEditedEmail] = useState(''); // 수정된 이메일 값
   const [editedProfile, setEditedProfile] = useState(null); // 수정된 프로필 값
 
+  // 관리자 정보 DB 로드 및 저장
   useEffect(() => {
     const fetchInfo = async () => {
       try {
@@ -36,10 +37,12 @@ const Info = ({ route }) => {
     fetchInfo();
   }, [adminId]);
 
+  // 정보 수정
   const handleEdit = () => {
     setEditMode(true);
   };
 
+  // 정보 수정 후 저장
   const handleSave = async () => {
     try {
       const adminDocRef = doc(db, 'Admin', adminId);
@@ -57,6 +60,7 @@ const Info = ({ route }) => {
     }
   };
 
+  // 프로필 이미지 선택
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
@@ -84,10 +88,11 @@ const Info = ({ route }) => {
         
         <Text style={styles.label}>프로필 사진</Text>
         <View style={styles.profileContainer}>
+
+          {/* 수정 시 이미지 pick, a_profile에 저장 */}
           {editMode ? (
             <TouchableOpacity style={styles.button} onPress={pickImage}>
               <Image source={{ uri: editedProfile || admin.a_profile }} style={styles.profileImage} />
-              {/* <Text style={styles.buttonText}>사진 선택</Text> */}
             </TouchableOpacity>
           ) : (
             <TouchableOpacity style={styles.button}>

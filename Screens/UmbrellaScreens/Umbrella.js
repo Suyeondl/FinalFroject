@@ -14,6 +14,7 @@ const Umbrella = (props) => {
   const { station } = props.route.params; // 선택한 station 정보 가져오기
   const st_id = station.st_id; // 선택한 station의 st_id
 
+  // 이 전 페이지에서 선택한 Station에 기부된 폐우산 로드
   useEffect(() => {
     const fetchDonateUm = async () => {
       try {
@@ -21,7 +22,7 @@ const Umbrella = (props) => {
         const querySnapshot = await getDocs(q);
         const donateUmData = querySnapshot.docs.map((doc) => doc.data());
         setDonateUm(donateUmData);
-        setFilteredDonateUm(donateUmData); // Initialize filteredDonateUm with all donateUmData
+        setFilteredDonateUm(donateUmData); // 모든 donateUmData로 FilteredDonateUm 초기화 -> 모든 리스트 출력
       } catch (error) {
         console.log('데이터 가져오기 실패:', error);
       }
@@ -30,10 +31,12 @@ const Umbrella = (props) => {
     fetchDonateUm();
   }, [st_id]);
 
+  // 선택한 폐우산 정보 가지고 다음 페이지로 전달
   const handleUmPress = (donateUm) => {
     props.navigation.navigate('UmInfo', { donateUm });
   };
 
+  // 사용자 ID로 검색
   const handleSearchTextChange = (text) => {
     const filteredData = donateUm.filter((donateUm) =>
       donateUm.u_id.toLowerCase().includes(text.toLowerCase())

@@ -13,6 +13,7 @@ const AnswerList = () => {
   const [reload, setReload] = useState(false); // 상태 변수 추가
   const navigation = useNavigation();
 
+  // DB의 StationNotification 문서 중 답변 상태가 true 인 것만 로드 -> 답변 완료한 문의사항
   useEffect(() => {
     const fetchStationNotifications = async () => {
       try {
@@ -20,6 +21,7 @@ const AnswerList = () => {
           where('a_state', '==', true),
         );
 
+        // 사용자 ID로 검색
         if (searchText !== '') {
           q = query(q, where('u_id', '==', searchText));
         }
@@ -39,10 +41,12 @@ const AnswerList = () => {
     setSearchText(text);
   };
 
+  // u_id와 no_additional이 일치하는 문의 다음 페이지로 전달
   const handleItemPress = (u_id, no_additional, answer) => {
     navigation.navigate('HistoryAnswer', { u_id, no_additional, answer });
   };
 
+  // 새로고침
   const handleReload = () => {
     setReload(!reload);
   };

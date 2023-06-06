@@ -10,6 +10,7 @@ const User = (props) => {
   const [users, setUsers] = useState([]);
   const [searchText, setSearchText] = useState('');
 
+  // User DB값 로드
   useEffect(() => {
     const fetchUsers = async () => {
       try {
@@ -24,6 +25,7 @@ const User = (props) => {
     fetchUsers();
   }, []);
 
+  // user_id 가지고 다음 페이지로 전달
   const handleUserPress = (user) => {
     props.navigation.navigate('UserInfo', { user });
   };
@@ -32,6 +34,7 @@ const User = (props) => {
     setSearchText(text);
   };
 
+  // 사용자 ID로 검색
   const filteredUsers = users.filter((user) =>
     user.u_id.toLowerCase().includes(searchText.toLowerCase())
   );

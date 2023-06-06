@@ -15,6 +15,7 @@ const StationInfo = ({ route }) => {
   const [rentalStatus, setRentalStatus] = useState(station.st_state);
   const [reload, setReload] = useState(false); // 상태 변수 추가
 
+  // 각각 우산마다의 대여 상태값 변경 및 업데이트
   const handleStateChange = async (stateValue) => {
     try {
       const stationRef = doc(db, 'Station', station.st_id);
@@ -40,6 +41,7 @@ const StationInfo = ({ route }) => {
     }
   };
 
+  // Station 사용 가능 여부 변경 및 업데이트
   const handleRentalStateChange = async () => {
     try {
       const userRef = doc(db, 'Station', station.st_id);
@@ -52,6 +54,7 @@ const StationInfo = ({ route }) => {
     }
   };
 
+  // Station의 폐우산 갯수 초기화 -> 수거
   const handleDonationClear = async () => {
     try {
       const stationRef = doc(db, 'Station', station.st_id);
@@ -65,6 +68,7 @@ const StationInfo = ({ route }) => {
     }
   };
 
+  // 새로고침
   const handleReload = () => {
     setReload(!reload);
   };

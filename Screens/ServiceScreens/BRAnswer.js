@@ -12,6 +12,7 @@ const BRAnswer = ({ route, navigation }) => {
   const [answerData, setAnswerData] = useState(null);
   const [answer, setAnswer] = useState('');
 
+  // 선택한 문의 정보와 일치하는 DB 로드
   console.log(u_id, no_additional)
   useEffect(() => {
     const fetchAnswerData = async () => {
@@ -44,6 +45,7 @@ const BRAnswer = ({ route, navigation }) => {
     setAnswer(text);
   };
 
+  // 답변 값 저장
   const handleSaveAnswer = async () => {
     try {
       if (answerData && answerData.length > 0) {

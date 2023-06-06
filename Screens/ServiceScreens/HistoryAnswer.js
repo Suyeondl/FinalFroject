@@ -13,6 +13,8 @@ const HistoryAnswer = ({ route, navigation }) => {
   const [answerText, setAnswerText] = useState(answer);
 
   console.log(u_id, no_additional, answer)
+
+  // 선택한 문의 정보와 일치하는 DB 로드
   useEffect(() => {
     const fetchAnswerData = async () => {
       try {
@@ -44,6 +46,7 @@ const HistoryAnswer = ({ route, navigation }) => {
     setAnswerText(text);
   };
 
+  // 답변 값 저장
   const handleSaveAnswer = async () => {
     try {
       if (answerData && answerData.length > 0) {
