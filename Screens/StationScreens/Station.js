@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { ScrollView, View, Text, TouchableOpacity, TextInput, StyleSheet } from 'react-native';
+import { ScrollView, View, Text, TouchableOpacity, TextInput, StyleSheet, ImageBackground } from 'react-native';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../../firebaseConfig';
+
+/* 스테이션 리스트 스크린
+// ID, 주소, 대여 여부 출력 */
 
 const Station = (props) => {
   const [stations, setStations] = useState([]);
   const [searchText, setSearchText] = useState('');
+  const [reload, setReload] = useState(false); // 상태 변수 추가
 
   useEffect(() => {
     const fetchStations = async () => {
@@ -19,7 +23,7 @@ const Station = (props) => {
     };
 
     fetchStations();
-  }, []);
+  }, [reload]);
 
   const handleStationPress = (station) => {
     props.navigation.navigate('StationInfo', { station });
@@ -32,6 +36,10 @@ const Station = (props) => {
   const filteredStations = stations.filter((station) =>
     station.st_id.toLowerCase().includes(searchText.toLowerCase())
   );
+
+  const handleReload = () => {
+    setReload(!reload);
+  };
 
   return (
     <View style={styles.container}>
@@ -58,6 +66,13 @@ const Station = (props) => {
           </TouchableOpacity>
         ))}
       </ScrollView>
+
+      
+      <TouchableOpacity style={styles.reloadButton} onPress={handleReload}>
+        <ImageBackground source={require('../Reload.png')} style={{width:40, height:40}}></ImageBackground>
+        {/* <Text style={styles.reloadButtonText}>새로고침</Text> */}
+      </TouchableOpacity>
+
     </View>
   );
 };
@@ -107,6 +122,10 @@ const styles = StyleSheet.create({
   status: {
     fontSize: 16,
     fontWeight: 'bold',
+  },
+  reloadButton: {
+    alignSelf: 'flex-end',
+    marginTop: 10,
   },
 });
 
