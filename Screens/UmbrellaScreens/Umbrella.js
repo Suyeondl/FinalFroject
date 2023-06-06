@@ -3,20 +3,21 @@ import { Text, View, ScrollView, TouchableOpacity, ImageBackground, StyleSheet, 
 import { db } from '../../firebaseConfig';
 import { collection, getDocs, where, query } from 'firebase/firestore';
 
-/* 폐우산 리스트 출력 스크린 기부되어있는 폐우산 리스트 출력
+/* 폐우산 리스트 출력 스크린
+DnateStation 스크린에서 선택한 Station에 기부되어있는 폐우산 리스트 출력
 기부 날짜, 기부한 User명 표시 */
 
 const Umbrella = (props) => {
   const [donateUm, setDonateUm] = useState([]);
   const [filteredDonateUm, setFilteredDonateUm] = useState([]);
 
-  // const { station } = props.route.params; // 선택한 station 정보 가져오기
-  // const st_id = station.st_id; // 선택한 station의 st_id
+  const { station } = props.route.params; // 선택한 station 정보 가져오기
+  const st_id = station.st_id; // 선택한 station의 st_id
 
   useEffect(() => {
     const fetchDonateUm = async () => {
       try {
-        const q = query(collection(db, 'Donation'));
+        const q = query(collection(db, 'Donation'), where('st_id', '==', st_id));
         const querySnapshot = await getDocs(q);
         const donateUmData = querySnapshot.docs.map((doc) => doc.data());
         setDonateUm(donateUmData);
@@ -27,7 +28,7 @@ const Umbrella = (props) => {
     };
 
     fetchDonateUm();
-  },);
+  }, [st_id]);
 
   const handleUmPress = (donateUm) => {
     props.navigation.navigate('UmInfo', { donateUm });

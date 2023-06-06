@@ -71,7 +71,7 @@ const Home = (props) => {
       </View>
 
       {/* 폐우산 정보 버튼 */}
-      <TouchableOpacity onPress={() => props.navigation.navigate("Umbrella")} style={styles.button2}>
+      <TouchableOpacity onPress={() => props.navigation.navigate("DonateStation")} style={styles.button2}>
           <ImageBackground source={require('../images/Um.png')} style={styles.buttonBackgroundImage} />
         </TouchableOpacity>
 
