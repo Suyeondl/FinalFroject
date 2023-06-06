@@ -6,7 +6,7 @@ import AnswerList from './AnswerList'
 import { StyleSheet } from 'react-native';
 
 /* 고객센터 페이지
-BottomNavigator를 통해 Station 고장 신고, 대여 반납 신고 리스트 출력
+BottomNavigator를 통해 Station 고장 신고, 대여 반납 신고, 이전 답변 리스트 출력
 신고한 사용자 id 검색 가능 */
 
 const Tab = createBottomTabNavigator();

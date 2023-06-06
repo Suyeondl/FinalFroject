@@ -4,6 +4,9 @@ import { collection, getDocs, query, where } from 'firebase/firestore';
 import { db } from '../../firebaseConfig';
 import { useNavigation } from '@react-navigation/native';
 
+/* 대여 및 반납 문의 리스트 스크린
+// 사용자 ID로 검색 가능 */
+
 const RentalReturnReport = () => {
   const [stationNotifications, setStationNotifications] = useState([]);
   const [searchText, setSearchText] = useState('');

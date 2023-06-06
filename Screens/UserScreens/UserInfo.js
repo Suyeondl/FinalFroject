@@ -3,7 +3,8 @@ import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { updateDoc, doc } from 'firebase/firestore';
 import { db } from '../../firebaseConfig';
 
-/* 사용자 세부 정보 열람 페이지 */
+/* 사용자 세부 정보 열람 페이지
+// 프로필 사진, 가입 일시, Email, ID, 이름, 휴대전화번호, 우산 대여 상태 출력 */
 
 const UserInfo = ({ route }) => {
   const { user } = route.params;

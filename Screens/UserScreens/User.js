@@ -3,6 +3,9 @@ import { ScrollView, View, Text, TouchableOpacity, TextInput, StyleSheet } from 
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../../firebaseConfig';
 
+/* 사용자 리스트 스크린
+// ID, Email, 가입 일시 출력 */
+
 const User = (props) => {
   const [users, setUsers] = useState([]);
   const [searchText, setSearchText] = useState('');

@@ -8,6 +8,8 @@ import * as Location from 'expo-location';
 import { db } from '../../firebaseConfig';
 import { collection, getDocs } from 'firebase/firestore';
 
+/* Station 위치, 내 위치 지도 출력 스크린 */
+
 const Map = ({ navigation }) => {
   const [mapRegion, setmapRegion] = useState({ //나의 위치
     latitude: 36.7987869, //위도

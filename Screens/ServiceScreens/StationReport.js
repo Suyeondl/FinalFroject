@@ -4,6 +4,9 @@ import { collection, getDocs, query, where } from 'firebase/firestore';
 import { db } from '../../firebaseConfig';
 import { useNavigation } from '@react-navigation/native';
 
+/* Station 고장 문의 리스트 스크린
+// 사용자 ID로 검색 가능 */
+
 const StationReport = () => {
   const [stationNotifications, setStationNotifications] = useState([]);
   const [searchText, setSearchText] = useState('');
@@ -26,7 +29,7 @@ const StationReport = () => {
         const stationNotificationData = querySnapshot.docs.map((doc) => doc.data());
         setStationNotifications(stationNotificationData);
       } catch (error) {
-        console.log('Failed to fetch station notifications:', error);
+        console.log('StationNotification 문서를 찾을 수 없습니다.', error);
       }
     };
 
