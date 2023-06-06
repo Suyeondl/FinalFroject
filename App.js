@@ -41,7 +41,7 @@ export default function App() {
         options = {{title : "UmStation" }}
       />
 
-        <Stack.Screen
+      <Stack.Screen
         name = "Home"
         component = {Home}
         options = {{title : "UmStation" }}
@@ -92,7 +92,7 @@ export default function App() {
       <Stack.Screen
         name = "HistoryAnswer"
         component = {HistoryAnswer}
-        options = {{title : " 답변 "}}
+        options = {{title : " 답변"}}
       />
 
       <Stack.Screen
