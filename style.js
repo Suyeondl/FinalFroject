@@ -41,13 +41,7 @@ export const styles = StyleSheet.create({
 
   //관리자 정보 버튼
   infoBTN: {
-    position: 'absolute',
-    width: '85%',
-    height: 215,
-    top: -30,
-
     backgroundColor: '#D9E5FF',
-
     borderRadius: 7,
     alignItems:'center',
     justifyContent:'center',
@@ -298,6 +292,10 @@ export const styles = StyleSheet.create({
     marginBottom:10
   },
 
+  reloadButton: {
+    alignSelf: 'flex-end',
+  },
+
 
   // StationInfo, UserInfo, Info 스크린 정보
   container: {
@@ -374,5 +372,18 @@ export const styles = StyleSheet.create({
     fontSize: 20,
     margin: 5,
     fontWeight: 'bold'
+  },
+  wasteButton: {
+    backgroundColor: '#6699FF',
+    borderRadius: 5,
+    width: '20%',
+    height:'80%',
+    alignItems: 'center'
+  },
+  wasteText: {
+    color: 'white',
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginTop: 8
   }
 })
