@@ -4,7 +4,8 @@ import { collection, query, where, getDocs, doc, updateDoc } from 'firebase/fire
 import { db } from '../../firebaseConfig';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
-/* Station 고장 신고 답변 페이지 */
+/* Station 고장 신고 답변 스크린
+// 문의 내용 출력 및 사용자가 선택한 문의 내용 활성화 / 해결 방안 입력 후 저장 -> DB에 Answer값 저장 */
 
 const BRAnswer = ({ route, navigation }) => {
   const { u_id, no_additional } = route.params;
@@ -64,7 +65,8 @@ const BRAnswer = ({ route, navigation }) => {
         <View key={index} style={styles.answerContainer}>
           <Text style={styles.headerText}>문의자 ID: {data.u_id}</Text>
           <Text style={styles.headerText}>문의 날짜: {data.no_date}</Text>
-          <Text style={styles.dateText}>문의 내용: {data.no_additional}</Text>
+          <Text style={styles.headerText}>문의 내용: {data.no_additional}</Text>
+          <Text style={styles.stIdText}>스테이션 ID: {data.st_id}</Text>
         </View>
       ))}
       {answerData && answerData.length > 0 && (
@@ -153,7 +155,7 @@ const styles = StyleSheet.create({
     padding: 10,
     marginBottom: 10,
   },
-  dateText: {
+  stIdText: {
     fontSize: 18,
   },
   typeActiveText: {

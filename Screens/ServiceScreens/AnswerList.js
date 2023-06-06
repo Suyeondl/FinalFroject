@@ -4,6 +4,9 @@ import { collection, getDocs, query, where } from 'firebase/firestore';
 import { db } from '../../firebaseConfig';
 import { useNavigation } from '@react-navigation/native';
 
+/* 이전에 답변했던 문의 리스트 스크린
+// 사용자 ID로 검색 가능 */
+
 const AnswerList = () => {
   const [stationNotifications, setStationNotifications] = useState([]);
   const [searchText, setSearchText] = useState('');

@@ -4,6 +4,9 @@ import { db } from '../../firebaseConfig';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import * as ImagePicker from 'expo-image-picker';
 
+/* 관리자 세부 정보 열람 스크린
+// 로그인 한 관리자에 대한 DB 값 불러와 출력 / 프로필 사진, 이름, 이메일 수정 가능 */
+
 const Info = ({ route }) => {
   const { adminId } = route.params;
   const [admin, setAdmin] = useState(null);

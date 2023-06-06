@@ -4,7 +4,8 @@ import { addDoc, collection, doc, setDoc } from 'firebase/firestore';
 import { Text, View, TextInput, TouchableOpacity, ImageBackground, Image, ScrollView } from "react-native";
 import * as ImagePicker from 'expo-image-picker';
 
-/* SignUpScreen - 관리자 회원가입 화면 */
+/* 관리자 회원가입 스크린
+// 프로필 이미지 설정 및 수정 가능 입력한 값 DB 저장 */
 const SignUp = (props) => {
   const [nameTextInput, setNameTextInput] = useState(""); //회원가입 관리자 이름
   const [idTextInput, setIdTextInput] = useState(""); //회원가입 관리자 ID
