@@ -2,10 +2,11 @@ import { useEffect, useState } from "react";
 import { Image, Text, View, StyleSheet, TouchableOpacity, ImageBackground } from "react-native";
 import { db } from '../firebaseConfig';
 import { collection, query, where, getDocs } from 'firebase/firestore';
-import { styles } from "../style";
+
+/* Main 홈화면
+// 관리자 정보(이름, ID, Email, 프로필사진) 출력 / 기능 선택 스크린 */
 
 const Home = (props) => {
-  // const [adminId, setAdminId] = useState("");
   const [adminData, setAdminData] = useState(); // 불러온 관리자 정보
   const [reload, setReload] = useState(false); // 상태 변수 추가
   const adminId = props.route.params.adminId;
@@ -35,85 +36,139 @@ const Home = (props) => {
     fetchData();
   }, [adminId, reload]);
   
-  
-  return(
-    <ImageBackground style={styles.image} source={require('../images/MainScreen.png')} resizeMode="cover">
-    <View style = {styles.mainView}>
-    <TouchableOpacity
-        style={styles.infoBTN}
-        onPress={() => handleInfoPress(adminId)}
-      >
-        <View style={styles.homeView}>
-        {adminData && (
-            <Image style={styles.homeImage} source={{ uri: adminData.a_profile }} resizeMode="contain" />
-          )}
-          {/* <Image style={styles.homeImage} source={require(adminData.a_profile)} resizeMode="contain" /> */}
-          <Text style={styles.adminText}>관리자</Text>
+  return (
+    <View style={styles.container}>
 
+      {/* 화면 상단 로고 : 새로고침 버튼 */}
+      <View>
+        <TouchableOpacity style={styles.adminButton} onPress={handleReload}>
+          <View style={styles.adminImageContainer}>
+            <Image
+            style={styles.adminBackgroundImage} 
+            source={require('../images/PURE.jpg')}></Image>
+          </View>
+        </TouchableOpacity>
+      </View>
+
+      {/* 관리자 정보 버튼 */}
+      <View style={styles.infoContainer}>
+        <TouchableOpacity onPress={() => handleInfoPress(adminId)} style={styles.infoButton}>
+          <View style={styles.innerContainer}>
           {adminData && (
-            <View>
-              <Text style={styles.nameText}>{adminData.a_name}</Text>
-              <Text style={styles.idText}>{adminData.a_id}</Text>
-              <Text style={styles.serialText}>{adminData.a_email}</Text>
+            <View style={styles.textContainer}>
+              <Text style={{fontSize:30, fontWeight:'bold', paddingTop: 20}}>{adminData.a_name}</Text>
+              <Text>                </Text>
+              <Text>                </Text>
+              <Text style={{fontSize:20, paddingVertical:10}}>{adminData.a_id}</Text>
+              <Text style={{fontSize:20}}>{adminData.a_email}</Text>
             </View>
           )}
-        </View>
-      </TouchableOpacity>
+          {adminData && (
+            <Image source={{ uri: adminData.a_profile }} style={styles.profileImage} />
+          )}
+          </View>
+        </TouchableOpacity>
+      </View>
 
-    {/* Station 버튼  */}
-    <TouchableOpacity 
-      style = {styles.homeBTN}
-      onPress={() => {
-        props.navigation.navigate("Station")
-      }}>
-      <ImageBackground style={styles.image} source={require('../images/Station.png')} resizeMode="contain">
-      </ImageBackground>
-    </TouchableOpacity>
+      {/* 폐우산 정보 버튼 */}
+      <TouchableOpacity onPress={() => props.navigation.navigate("Umbrella")} style={styles.button2}>
+          <ImageBackground source={require('../images/Um.png')} style={styles.buttonBackgroundImage} />
+        </TouchableOpacity>
 
-    {/* Service 버튼 */}
-    <TouchableOpacity
-      style = {styles.homeBTN4}
-      onPress={() => {
-        props.navigation.navigate("ServiceMain")
-      }}>
-      <ImageBackground style={styles.image} source={require('../images/Service.png')} resizeMode="contain">
-      </ImageBackground>
-    </TouchableOpacity>
-
-    {/* User 버튼 */}
-    <TouchableOpacity 
-      style = {styles.homeBTN2}
-      onPress={() => {
-        props.navigation.navigate("User")
-      }}>
-      <ImageBackground style={styles.image} source={require('../images/User.png')} resizeMode="contain">
-      </ImageBackground>
-    </TouchableOpacity>
-
-    {/* 폐우산 버튼 */}
-    <TouchableOpacity
-      style = {styles.homeBTN3}
-      onPress={() => {
-        props.navigation.navigate("DonateStation")
-      }}>
-      <ImageBackground style={styles.image} source={require('../images/Um.png')} resizeMode="contain">
-      </ImageBackground>
-    </TouchableOpacity>
-
-    <TouchableOpacity style={test.reloadButton} onPress={handleReload}>
-        <ImageBackground source={require('./Reload.png')} style={{width:40, height:40}}></ImageBackground>
-        {/* <Text style={styles.reloadButtonText}>새로고침</Text> */}
-      </TouchableOpacity>
-
+      {/* 버튼 그룹 */}
+      <View style={styles.buttonGroup}>
+        {/* 스테이션 정보 확인 버튼 */}
+        <TouchableOpacity onPress={() => props.navigation.navigate("Station")} style={styles.button}>
+          <ImageBackground source={require('../images/Station.png')} style={styles.buttonBackgroundImage} />
+        </TouchableOpacity>
+        {/* 사용자 정보 확인 버튼 */}
+        <TouchableOpacity onPress={() => props.navigation.navigate("User")} style={styles.button}>
+          <ImageBackground source={require('../images/User.png')} style={styles.buttonBackgroundImage} />
+        </TouchableOpacity>
+      </View>
+      
+      {/* 고객센터 버튼 */}
+      <TouchableOpacity onPress={() => props.navigation.navigate("ServiceMain")} style={styles.button2}>
+          <ImageBackground source={require('../images/Service.png')} style={styles.buttonBackgroundImage} />
+        </TouchableOpacity>
     </View>
-    </ImageBackground>
-
-  )
+  );
 }
 
-const test = StyleSheet.create({
-  reloadButton: {
-    alignSelf: 'flex-end',
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: 'white',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  adminImageContainer: {
+    width: '100%',
+    alignItems: 'center',
+  },
+  adminButton: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  adminBackgroundImage: {
+    resizeMode: 'contain',
+    width: 300,
+  },
+  profileImage: {
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+    marginTop: 25
+  },
+  buttonGroup: {
+    flexDirection: 'row',
+    padding:5
+    // flexWrap: 'wrap',
+    // justifyContent: 'center',
+  },
+  button: {
+    width: '41%',
+    height: 190,
+    margin: 10,
+    borderRadius: 10,
+    overflow: 'hidden',
+  },
+  button2: {
+    width: '85%',
+    height: '12%',
+    margin: 10,
+    borderRadius: 10,
+    overflow: 'hidden',
+  },
+  buttonBackgroundImage: {
+    width: '100%',
+    height: '100%',
+    resizeMode: 'cover'
+  },
+  infoButton: {
+    alignItems: 'flex-end',
+    marginBottom: 20,
+    backgroundColor: '#D9E5FF',
+    width: '100%',
+    alignContent:'center',
+  },
+  infoContainer: {
+    alignItems: 'flex-start',
+    justifyContent: 'center',
+    marginBottom: 20,
+    backgroundColor: '#D9E5FF',
+    width: '85%',
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    borderRadius: 10,
+  },
+  innerContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  textContainer: {
+    alignItems: 'flex-start',
   },
 });
 
